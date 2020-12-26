@@ -44,13 +44,26 @@ public class TrackerTest {
         item1.setId(2);
         tracker.add(item1);
         tracker.add(item2);
-        Item[] items = new Item[3];
+        Item[] items = new Item[2];
         items[0] = item1;
-        items[2] = item2;
+        items[1] = item2;
         Item[] expected = new Item[2];
         expected[0] = item1;
         expected[1] = item2;
         Item[] result = tracker.findAll(items);
         assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenReplace() {
+        Tracker tracker = new Tracker();
+        Item bug = new Item();
+        bug.setName("Bug");
+        tracker.add(bug);
+        int id = bug.getId();
+        Item bugWithDesc = new Item();
+        bugWithDesc.setName("Bug with description");
+        tracker.replace(id, bugWithDesc);
+        assertThat(tracker.findById(id).getName(), is("Bug with description"));
     }
 }

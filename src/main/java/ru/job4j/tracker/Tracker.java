@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Tracker {
@@ -15,50 +14,42 @@ public class Tracker {
     }
 
     public Item[] findAll(Item[] items) {
-        Item[] itemsNoNull = new Item[items.length];
-        int size = 0, count = 0;
-        for (Item i :items) {
-            if (i == null) {
-                count++;
-                break;
-            }
-        }
-        if (count == 0) {
-            return null;
-        }
-        for (Item i :items) {
-            if (i != null) {
-                itemsNoNull[size] = i;
-                size++;
-            }
-        }
-        return Arrays.copyOf(itemsNoNull, size);
+        return Arrays.copyOf(items, this.size);
     }
 
     public Item[] findByName(String name) {
-        Item[] itemsN = new Item[items.length];
+        Item[] itemsN = new Item[this.size];
         int size = 0;
-        for (Item i : items) {
-            if (i.getName().equals(name)) {
-                itemsN[size] = i;
+        for (int i = 0; i < this.size; i++) {
+            if (items[0].getName().equals(name)) {
+                itemsN[size] = items[i];
                 size++;
             }
-        }
-        if (size == 0) {
-            return null;
         }
         return Arrays.copyOf(itemsN, size);
     }
 
-    public Item findById(int id) {
-        Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                rsl = item;
-                break;
+    private int indexOf(int id) {
+        for (int i = 0; i < this.size; i++) {
+            if (items[i].getId() == id) {
+                return i;
             }
         }
-        return rsl;
+        return -1;
+    }
+
+    public Item findById(int id) {
+        int i = indexOf(id);
+        return i != -1 ? items[i] : null;
+    }
+
+    public boolean replace(int id, Item item) {
+        int i = indexOf(id);
+        if (i == -1) {
+            return false;
+        }
+        item.setId(id);
+        items[i] = item;
+        return true;
     }
 }
