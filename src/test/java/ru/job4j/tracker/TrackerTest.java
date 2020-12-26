@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,11 +23,14 @@ public class TrackerTest {
     public void whenItemFindByName() {
         Tracker tracker = new Tracker();
         Item item = new Item();
+        Item[] result = new Item[1];
+        Item[] expected = new Item[1];
         item.setName("test1");
         item.setId(1);
         tracker.add(item);
-        Item result = tracker.findByName("test1");
-        assertThat(result.getId(), is(item.getId()));
+        result[0] = tracker.findByName("test1");
+        expected[0] = item;
+        assertThat(result[0].getId(), is(expected[0].getId()));
     }
 
     @Test
