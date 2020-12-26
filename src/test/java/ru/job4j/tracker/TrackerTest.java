@@ -28,7 +28,7 @@ public class TrackerTest {
         item.setName("test1");
         item.setId(1);
         tracker.add(item);
-        result[0] = tracker.findByName("test1");
+        result = tracker.findByName("test1");
         expected[0] = item;
         assertThat(result[0].getId(), is(expected[0].getId()));
     }

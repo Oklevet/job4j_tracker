@@ -16,15 +16,21 @@ public class Tracker {
 
     public Item[] findAll(Item[] items) {
         Item[] itemsNoNull = new Item[items.length];
-        int size = 0;
+        int size = 0, count = 0;
+        for (Item i :items) {
+            if (i == null) {
+                count++;
+                break;
+            }
+        }
+        if (count == 0) {
+            return null;
+        }
         for (Item i :items) {
             if (i != null) {
                 itemsNoNull[size] = i;
                 size++;
             }
-        }
-        if (size == 0) {
-            return null;
         }
         return Arrays.copyOf(itemsNoNull, size);
     }
