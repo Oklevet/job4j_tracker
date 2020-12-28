@@ -13,8 +13,8 @@ public class Tracker {
         return item;
     }
 
-    public Item[] findAll(Item[] items) {
-        return Arrays.copyOf(items, this.size);
+    public Item[] findAll() {
+        return Arrays.copyOf(this.items, this.size);
     }
 
     public Item[] findByName(String name) {
@@ -61,6 +61,9 @@ public class Tracker {
         System.arraycopy(items, i + 1, items, i, size - i - 1);
         items[size - 1] = null;
         this.size--;
+        for (int j = i; j < size; j++) {
+            items[j].setId(items[j].getId() - 1);
+        }
         return true;
     }
 }
