@@ -5,12 +5,13 @@ import java.util.Scanner;
 public class ConsoleInput implements Input {
     private Scanner scanner = new Scanner(System.in);
     @Override
-    public String askStr() {
-        return this.scanner.nextLine();
+    public String askStr(String question) {
+        System.out.print(question);
+        return scanner.nextLine();
     }
 
     @Override
-    public int askInt() {
-        return Integer.valueOf(this.scanner.nextLine());
+    public int askInt(String question) {
+        return Integer.valueOf(askStr(question));
     }
 }
