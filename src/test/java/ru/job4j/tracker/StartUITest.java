@@ -19,19 +19,19 @@ public class StartUITest {
         assertThat(created.getName(), is(expected.getName()));
     }
 
-    @Test
+      @Test
     public void whenReplaceItem() {
         Tracker tracker = new Tracker();
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {
-                String.valueOf(item.getId()), /* id сохраненной заявки в объект tracker. */
-                "replaced item"
+                "replaced item", String.valueOf(item.getId())
         };
         StartUI.replaceItem(new StubInput(answers), tracker);
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName(), is("replaced item"));
     }
+
 
     @Test
     public void whenDeleteItem() {
@@ -40,8 +40,7 @@ public class StartUITest {
         tracker.add(item);
         Item[] items = new Item[0];
         String[] answers = {
-                String.valueOf(item.getId()), /* id сохраненной заявки в объект tracker. */
-                "delete item"
+                String.valueOf(item.getId())
         };
         StartUI.deleteItem(new StubInput(answers), tracker);
         assertThat(tracker.findByName("delete item"), is(items));
