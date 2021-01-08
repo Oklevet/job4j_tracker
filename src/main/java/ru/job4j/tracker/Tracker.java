@@ -1,38 +1,37 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tracker {
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<Item>();
     private int ids = 1;
-    private int size = 0;
 
     public Item add(Item item) {
         item.setId(ids++);
-        items[size++] = item;
+        items.add(item);
         return item;
     }
 
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.size);
+    public List<Item> findAll() {
+        return items;
     }
 
-    public Item[] findByName(String name) {
-        Item[] itemsN = new Item[this.size];
+    public List<Item> findByName(String name) {
+        List<Item> itemsN = new ArrayList<>();
         int size = 0;
-        for (int i = 0; i < this.size; i++) {
-            if (items[i].getName().equals(name)) {
-                itemsN[size] = items[i];
-                size++;
+        for (Item i : items) {
+            if (i.getName().equals(name)) {
+                itemsN.add(i);
             }
         }
-        return Arrays.copyOf(itemsN, size);
+        return itemsN;
     }
 
     private int indexOf(int id) {
-        for (int i = 0; i < this.size; i++) {
-            if (items[i].getId() == id) {
-                return i;
+        for (Item i : items) {
+            if (i.getId() == id) {
+                return items.indexOf(i);
             }
         }
         return -1;
@@ -40,7 +39,7 @@ public class Tracker {
 
     public Item findById(int id) {
         int i = indexOf(id);
-        return i != -1 ? items[i] : null;
+        return i != -1 ? items.get(i) : null;
     }
 
     public boolean replace(int id, Item item) {
@@ -49,7 +48,7 @@ public class Tracker {
             return false;
         }
         item.setId(id);
-        items[i] = item;
+        items.add(i, item);
         return true;
     }
 
@@ -58,12 +57,7 @@ public class Tracker {
         if (i == -1) {
             return false;
         }
-        System.arraycopy(items, i + 1, items, i, size - i - 1);
-        items[size - 1] = null;
-        this.size--;
-        for (int j = i; j < size; j++) {
-            items[j].setId(items[j].getId() - 1);
-        }
+        items.remove(i);
         return true;
     }
 }

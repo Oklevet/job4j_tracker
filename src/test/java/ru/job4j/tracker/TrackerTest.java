@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
@@ -24,14 +25,14 @@ public class TrackerTest {
     public void whenItemFindByName() {
         Tracker tracker = new Tracker();
         Item item = new Item();
-        Item[] result = new Item[1];
-        Item[] expected = new Item[1];
+        List<Item> result = new ArrayList<>();
+        List<Item> expected = new ArrayList<>();
         item.setName("test1");
         item.setId(1);
         tracker.add(item);
         result = tracker.findByName("test1");
-        expected[0] = item;
-        assertThat(result[0].getId(), is(expected[0].getId()));
+        expected.add(item);
+        assertThat(result.get(0).getId(), is(expected.get(0).getId()));
     }
 
     @Test
@@ -45,13 +46,13 @@ public class TrackerTest {
         item1.setId(2);
         tracker.add(item1);
         tracker.add(item2);
-        Item[] items = new Item[2];
-        items[0] = item1;
-        items[1] = item2;
-        Item[] expected = new Item[2];
-        expected[0] = item1;
-        expected[1] = item2;
-        Item[] result = tracker.findAll();
+        List<Item> items = new ArrayList<>();
+        items.add(item1);
+        items.add(item2);
+        List<Item> expected = new ArrayList<>();
+        expected.add(item1);
+        expected.add(item2);
+        List<Item> result = tracker.findAll();
         assertThat(result, is(expected));
     }
 
