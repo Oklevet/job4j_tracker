@@ -29,9 +29,9 @@ public class Tracker {
     }
 
     private int indexOf(int id) {
-        for (Item i : items) {
-            if (i.getId() == id) {
-                return items.indexOf(i);
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId() == id) {
+                return i;
             }
         }
         return -1;
@@ -48,7 +48,7 @@ public class Tracker {
             return false;
         }
         item.setId(id);
-        items.add(i, item);
+        items.set(i, item);
         return true;
     }
 
