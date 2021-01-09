@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
@@ -78,5 +80,49 @@ public class TrackerTest {
         int id = bug.getId();
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
+    }
+
+    @Test
+    public void whenUpItemCompare() {
+        Tracker tracker = new Tracker();
+        Item item1 = new Item("cqwe");
+        Item item2 = new Item("aqwe");
+        Item item3 = new Item("bqwe");
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        List<Item> items = new ArrayList<>();
+        List<Item> expected = new ArrayList<>();
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        expected.add(item2);
+        expected.add(item3);
+        expected.add(item1);
+        Comparator upCompar = new itemsUpComparator();
+        Collections.sort(items, upCompar);
+        assertThat(items, is(expected));
+    }
+
+    @Test
+    public void whenDownItemCompare() {
+        Tracker tracker = new Tracker();
+        Item item1 = new Item("cqwe");
+        Item item2 = new Item("aqwe");
+        Item item3 = new Item("bqwe");
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        List<Item> items = new ArrayList<>();
+        List<Item> expected = new ArrayList<>();
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        expected.add(item1);
+        expected.add(item3);
+        expected.add(item2);
+        Comparator upCompar = new itemsDownComparator();
+        Collections.sort(items, upCompar);
+        assertThat(items, is(expected));
     }
 }
