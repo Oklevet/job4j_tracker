@@ -99,7 +99,7 @@ public class TrackerTest {
         expected.add(item2);
         expected.add(item3);
         expected.add(item1);
-        Comparator upCompar = new itemsUpComparator();
+        Comparator upCompar = new ItemsUpComparator();
         Collections.sort(items, upCompar);
         assertThat(items, is(expected));
     }
@@ -121,7 +121,7 @@ public class TrackerTest {
         expected.add(item1);
         expected.add(item3);
         expected.add(item2);
-        Comparator upCompar = new itemsDownComparator();
+        Comparator upCompar = new ItemsDownComparator();
         Collections.sort(items, upCompar);
         assertThat(items, is(expected));
     }

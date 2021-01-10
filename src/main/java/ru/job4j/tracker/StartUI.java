@@ -17,7 +17,7 @@ public class StartUI {
                 continue;
             }
             UserAction action = actions[select];
-            run = action.execute(input,tracker);
+            run = action.execute(input, tracker);
         }
     }
 
@@ -27,7 +27,6 @@ public class StartUI {
             out.println(i + ". " + actions[i].name());
         }
     }
-
 
     public static void main(String[] args) {
         Output output = new ConsoleOutput();

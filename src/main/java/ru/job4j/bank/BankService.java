@@ -46,10 +46,11 @@ public class BankService {
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
         Account destAccount = findByRequisite(destPassport, destRequisite);
 
-        if (srcAccount != null && srcAccount.getBalance() >= amount &&
-                findByRequisite(destPassport,destRequisite) != null) {
+        if (srcAccount != null && srcAccount.getBalance() >= amount
+                && findByRequisite(destPassport, destRequisite) != null) {
             findByRequisite(srcPassport, srcRequisite).setBalance(srcAccount.getBalance() - amount);
-            findByRequisite(destPassport, destRequisite).setBalance(destAccount.getBalance() + amount);
+            findByRequisite(destPassport, destRequisite).setBalance(destAccount.getBalance()
+                    + amount);
             return true;
         }
         return false;
@@ -62,7 +63,7 @@ public class BankService {
         bank.addAccount(user.getPassport(), new Account("5546", 150D));
         bank.addAccount(user.getPassport(), new Account("113", 50D));
         bank.transferMoney(user.getPassport(), "5546", user.getPassport(), "113", 150D);
-        System.out.println(bank.findByRequisite("3434", "5546").getBalance() + " -> " +
-                bank.findByRequisite("3434", "113").getBalance());
+        System.out.println(bank.findByRequisite("3434", "5546").getBalance() + " -> "
+                + bank.findByRequisite("3434", "113").getBalance());
     }
 }
