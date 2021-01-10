@@ -2,7 +2,15 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает клиентов банка
+ * @author NIK STARTSEV
+ * @version 1.0
+ */
 public class User {
+    /**
+     * параметры клиентов банка: номер паспорта, ФИО
+     */
     private String passport;
     private String username;
 
@@ -27,6 +35,11 @@ public class User {
         this.username = username;
     }
 
+    /**
+     * Метод принимает на вход значение паспорта из списка имеющихся в банке и осуществляет сравнение.
+     * @param o passport из списка имеющихся
+     * @return true - совпадение по искомому паспорту подтверждено. false - нет совпадения.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,6 +52,9 @@ public class User {
         return Objects.equals(passport, user.passport);
     }
 
+    /**
+     * Получение хэшкода объекта паспорт
+     */
     @Override
     public int hashCode() {
         return Objects.hash(passport);

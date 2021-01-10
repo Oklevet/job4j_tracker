@@ -2,7 +2,15 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает клиентов банка
+ * @author NIK STARTSEV
+ * @version 1.0
+ */
 public class Account {
+    /**
+     * параметры счетов в банке: реквизиты счёта, баланс счёта.
+     */
     private String requisite;
     private double balance;
 
@@ -27,6 +35,11 @@ public class Account {
         this.balance = balance;
     }
 
+    /**
+     * Метод принимает на вход значение реквизита из списка имеющихся у клиента и осуществляет сравнение.
+     * @param o requisite из списка имеющихся
+     * @return true - совпадение по искомому реквизиту подтверждено. false - нет совпадения.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,6 +52,9 @@ public class Account {
         return Objects.equals(requisite, account.requisite);
     }
 
+    /**
+     * Получение хэшкода объекта реквизит
+     */
     @Override
     public int hashCode() {
         return Objects.hash(requisite);
