@@ -6,6 +6,10 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class BankServiceTest {
+
+    /**
+     * добавление пользователя
+     */
     @Test
     public void addUser() {
         User user = new User("3434", "Petr Arsentev");
@@ -14,6 +18,9 @@ public class BankServiceTest {
         assertThat(bank.findByPassport("3434"), is(user));
     }
 
+    /**
+     * поиск по реквизитам с несуществующими паспортными данными
+     */
     @Test
     public void whenEnterInvalidPassport() {
         User user = new User("3434", "Petr Arsentev");
@@ -23,6 +30,9 @@ public class BankServiceTest {
         assertNull(bank.findByRequisite("34", "5546"));
     }
 
+    /**
+     * поиск по существующим пасспортным данным
+     */
     @Test
     public void whenFindByPassport() {
         User user = new User("3434", "Petr Arsentev");
@@ -32,6 +42,9 @@ public class BankServiceTest {
         assertThat(bank.findByPassport("3434"), is(user));
     }
 
+    /**
+     * Поиск по несуществующим паспортным данным
+     */
     @Test
     public void whenInvalidFindByPassport() {
         User user = new User("3434", "Petr Arsentev");
@@ -41,6 +54,9 @@ public class BankServiceTest {
         assertNull(bank.findByPassport("123"));
     }
 
+    /**
+     * Добавление нового счёта
+     */
     @Test
     public void addAccount() {
         User user = new User("3434", "Petr Arsentev");
@@ -50,6 +66,9 @@ public class BankServiceTest {
         assertThat(bank.findByRequisite("3434", "5546").getBalance(), is(150D));
     }
 
+    /**
+     * Проверка перевода средств между счетами
+     */
     @Test
     public void transferMoney() {
         User user = new User("3434", "Petr Arsentev");
@@ -61,6 +80,9 @@ public class BankServiceTest {
         assertThat(bank.findByRequisite(user.getPassport(), "113").getBalance(), is(200D));
     }
 
+    /**
+     * Добавление нескольких новых аккаунтов
+     */
     @Test
     public void add2Accounts() {
         User user = new User("3434", "Petr Arsentev");
