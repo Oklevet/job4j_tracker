@@ -30,7 +30,7 @@ public class User implements Comparable<User> {
     public int compareTo(User o) {
         int com = name.compareTo(o.name);
         if (com == 0) {
-            return age - o.age;
+            return Integer.compare(age, o.age);
         }
         return com;
     }
