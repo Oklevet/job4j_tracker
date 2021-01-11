@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Класс описывает клиентов банка
+ * Класс описывает методы работы банка
  * @author NIK STARTSEV
  * @version 1.0
  */
