@@ -24,4 +24,22 @@ public class DepDescCompTest {
         );
         assertThat(rsl, lessThan(0));
     }
+
+    @Test
+    public void whenUpDepartmentGo() {
+        int rsl = new DepDescComp().compare(
+                "K1/SK2/SSK1",
+                "K2/SK1/SSK2"
+        );
+        assertThat(rsl, greaterThan(0));
+    }
+
+    @Test
+    public void whenUpDepartmentGoSec() {
+        int rsl = new DepDescComp().compare(
+                "K2/SK2/SSK1",
+                "K2/SK1/SSK2"
+        );
+        assertThat(rsl, greaterThan(0));
+    }
 }
