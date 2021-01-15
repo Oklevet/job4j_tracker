@@ -1,5 +1,7 @@
 package ru.job4j.lambda;
 
+import java.util.List;
+
 public class Attachment {
     private String name;
     private int size;
