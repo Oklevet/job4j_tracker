@@ -10,12 +10,9 @@ public class RefMethod {
                 "Ivan",
                 "Petr Arsentev"
         );
-        names.forEach(name -> {
-            if (name.length() > 10) {
-                System.out.println(name.substring(0, 10) + "..");
-            } else {
-                System.out.println(name);
-            }
-        });
+        names.forEach(System.out::println);         //неформатируемый вывод
+
+        // StringIndexOutOfBoundsException
+        //names.stream().map((x) -> x.substring(0, 10)).forEach(System.out::println);
     }
 }
