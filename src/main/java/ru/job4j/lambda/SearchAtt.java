@@ -5,15 +5,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class SearchAtt {
-    private static List<Attachment> filter(List<Attachment> list,
-                                  Predicate<List<Attachment>> isPos) {
+    private static List<Attachment> filter(List<Attachment> list, Predicate<Attachment> isPos) {
         List<Attachment> rsl = new ArrayList<>();
         for (Attachment att : list) {
-           if (att.getName().contains("bug")) {
-               rsl.add(att);
-           } else if (att.getSize() > 100) {
-               rsl.add(att);
-           }
+            if (isPos.test(att)) {
+                rsl.add(att);
+            }
         }
         return rsl;
     }
