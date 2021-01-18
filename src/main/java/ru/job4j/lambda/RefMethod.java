@@ -10,9 +10,15 @@ public class RefMethod {
                 "Ivan",
                 "Petr Arsentev"
         );
-        names.forEach(System.out::println);         //неформатируемый вывод
+        Consumer<String> out = RefMethod::cutOut;
+        names.forEach(out);
+    }
 
-        // StringIndexOutOfBoundsException
-        //names.stream().map((x) -> x.substring(0, 10)).forEach(System.out::println);
+    public static void cutOut(String value) {
+        if (value.length() > 10) {
+            System.out.println(value.substring(0, 10) + "..");
+        } else {
+            System.out.println(value);
+        }
     }
 }
