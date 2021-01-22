@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class NotifyAccountTest {
     @Test
     public void sent() {
-        List<Account> accounts = Arrays.asList(
+        List<Account> accounts = List.of(
                 new Account("123", "Petr Arsentev", "eDer3432f"),
                 new Account("142", "Petr Arsentev", "000001")
         );
@@ -27,7 +27,7 @@ public class NotifyAccountTest {
 
     @Test
     public void sentInvalid() {
-        List<Account> accounts = Arrays.asList(
+        List<Account> accounts = List.of(
                 new Account("123", "Petr Arsentev", "eDer3432f"),
                 new Account("123", "Petr Arsentev", "eDer3432f"),
                 new Account("121", "qwe qwe", "eDer3432f"),
