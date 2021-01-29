@@ -6,7 +6,7 @@ import java.util.OptionalInt;
 public class OptionalIfPresent {
     public static void ifPresent(int[] data) {
         OptionalInt mx = max(data);
-        if(mx.isPresent()) {
+        if (mx.isPresent()) {
             System.out.println("Max: " + mx.getAsInt());
         }
 //        max(data).stream()

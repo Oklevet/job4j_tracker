@@ -5,7 +5,8 @@ import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
 public class Reduce {
-    private static int loop(int to, BiFunction<Integer, Integer, Integer> func, Supplier<Integer> initValue) {
+    private static int loop(int to, BiFunction<Integer, Integer, Integer> func,
+                            Supplier<Integer> initValue) {
         int rsl = initValue.get();
         for (int index = 1; index <= to; index++) {
             rsl = func.apply(rsl, index);

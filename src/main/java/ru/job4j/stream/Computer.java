@@ -69,15 +69,15 @@ public class Computer {
 
     @Override
     public String toString() {
-        return "Computer{" +
-                "motherboard='" + motherboard + '\'' +
-                ", cpu='" + cpu + '\'' +
-                ", cpuSpeed=" + cpuSpeed +
-                ", gpu='" + gpu + '\'' +
-                ", gpuTakt=" + gpuTakt +
-                ", ssd='" + ssd + '\'' +
-                ", ssdCapacity=" + ssdCapacity +
-                '}';
+        return "Computer{"
+                + "motherboard='" + motherboard + '\''
+                + ", cpu='" + cpu + '\''
+                + ", cpuSpeed=" + cpuSpeed
+                + ", gpu='" + gpu + '\''
+                + ", gpuTakt=" + gpuTakt
+                + ", ssd='" + ssd + '\''
+                + ", ssdCapacity=" + ssdCapacity
+                + '}';
     }
 
     public static void main(String[] args) {

@@ -6,12 +6,17 @@ public class Students {
     private int score;
     private String surname;
 
+    public Students(String surname, int score) {
+        this.score = score;
+        this.surname = surname;
+    }
+
     @Override
     public String toString() {
-        return "Students{" +
-                "score=" + score +
-                ", surname='" + surname + '\'' +
-                '}';
+        return "Students{"
+                + "score=" + score
+                + ", surname='" + surname + '\''
+                + '}';
     }
 
     public void setSurname(String surname) {
@@ -26,18 +31,17 @@ public class Students {
         return surname;
     }
 
-    public Students(String surname, int score) {
-        this.score = score;
-        this.surname = surname;
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Students student = (Students) o;
-        return score == student.score &&
-                surname.equals(student.surname);
+        return score == student.score
+                && surname.equals(student.surname);
     }
 
     @Override

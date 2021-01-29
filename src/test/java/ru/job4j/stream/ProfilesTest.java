@@ -10,18 +10,18 @@ import static org.junit.Assert.*;
 
 public class ProfilesTest {
     private List<Profile> profiles;
-    Profile profile1 = new Profile(new Address("Tokyo", "qwe", 1, 12));
-    Profile profile2 = new Profile(new Address("NY", "asd", 3, 123));
-    Profile profile3 = new Profile(new Address("Moscow", "zxc", 41, 142));
-    Profile profile4 = new Profile(new Address("Tokyo", "qwe", 1, 12));
-    Profile profile5 = new Profile(new Address("SPB", "asdzxc", 51, 512));
-    Profile profile6 = new Profile(new Address("Tokyo", "qwe", 1, 12));
-    Profile profile7 = new Profile(new Address("London", "zxcasd", 76, 142));
-    Profile profile8 = new Profile(new Address("SPB", "asdzxc", 51, 512));
-    Profile profile9 = new Profile(new Address("Berlin", "ertqwe", 45, 87));
+    private Profile profile1 = new Profile(new Address("Tokyo", "qwe", 1, 12));
+    private Profile profile2 = new Profile(new Address("NY", "asd", 3, 123));
+    private Profile profile3 = new Profile(new Address("Moscow", "zxc", 41, 142));
+    private Profile profile4 = new Profile(new Address("Tokyo", "qwe", 1, 12));
+    private Profile profile5 = new Profile(new Address("SPB", "asdzxc", 51, 512));
+    private Profile profile6 = new Profile(new Address("Tokyo", "qwe", 1, 12));
+    private Profile profile7 = new Profile(new Address("London", "zxcasd", 76, 142));
+    private Profile profile8 = new Profile(new Address("SPB", "asdzxc", 51, 512));
+    private Profile profile9 = new Profile(new Address("Berlin", "ertqwe", 45, 87));
 
     @Before
-    public void Set() {
+    public void set() {
         profiles = List.of(profile1, profile2, profile3, profile4,
                 profile5, profile6, profile7, profile8, profile9);
     }
