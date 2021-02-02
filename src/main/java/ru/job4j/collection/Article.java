@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 public class Article {
     public static boolean generateBy(String origin, String line) {
         Set<String> orig = new HashSet<>(Arrays.asList(origin.toLowerCase().split("\\b")));
-        List<String> isEmptyStr = Arrays.stream(line.toLowerCase().split(" "))
-                .filter(Predicate.not(s -> (orig.contains(s))))
-                .collect(Collectors.toList());
-        return isEmptyStr.isEmpty();
+        List<String> find = List.of(line.toLowerCase().split(" "));
+        for (String s : find) {
+            if (!orig.contains(s)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
