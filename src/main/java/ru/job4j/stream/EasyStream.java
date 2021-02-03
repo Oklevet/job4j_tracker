@@ -19,7 +19,7 @@ public class EasyStream {
 
     public EasyStream map(Function<Integer, Integer> fun) {
         List<Integer> mapList = new ArrayList<>();
-        if(!stream.isEmpty()) {
+        if (!stream.isEmpty()) {
             for (Integer i : stream) {
                 mapList.add(fun.apply(i));
             }
@@ -29,7 +29,7 @@ public class EasyStream {
 
     public EasyStream filter(Predicate<Integer> fun) {
         List<Integer> filterList = new ArrayList<>();
-        if(!stream.isEmpty()) {
+        if (!stream.isEmpty()) {
             for (Integer i : stream) {
                 if (fun.test(i)) {
                     filterList.add(i);
