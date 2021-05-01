@@ -35,15 +35,30 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
+
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "insert into items(name) values (?) ")){
-            preparedStatement.setString(1, item.getName());
+                "insert into items(id, name) values (?, ?) ")){
+            preparedStatement.setInt(1, getID() + 1);
+            preparedStatement.setString(2, item.getName());
             String str = preparedStatement.execute() ? "Item is not added." : "Item is added.";
             System.out.println(str);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return item;
+    }
+
+    public Integer getID() {
+        int res = 0;
+        try (PreparedStatement preparedStatement = cn.prepareStatement(
+                "select max(id) from items ")) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    res = resultSet.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Override
