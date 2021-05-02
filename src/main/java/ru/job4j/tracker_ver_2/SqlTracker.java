@@ -1,10 +1,7 @@
 package ru.job4j.tracker_ver_2;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -37,7 +34,7 @@ public class SqlTracker implements Store {
     public Item add(Item item) {
 
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "insert into items(id, name) values (?, ?) ")){
+                "insert into items(id, name) values (?, ?) ", Statement.RETURN_GENERATED_KEYS)){
             preparedStatement.setInt(1, getID() + 1);
             preparedStatement.setString(2, item.getName());
             String str = preparedStatement.execute() ? "Item is not added." : "Item is added.";
