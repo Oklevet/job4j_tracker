@@ -8,6 +8,13 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
     private Connection cn;
+
+    public SqlTracker() {}
+
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -35,13 +42,19 @@ public class SqlTracker implements Store {
 
         try (PreparedStatement preparedStatement = cn.prepareStatement(
                 "insert into items(id, name) values (?, ?) ", Statement.RETURN_GENERATED_KEYS)){
-            preparedStatement.setInt(1, getID() + 1);
-            preparedStatement.setString(2, item.getName());
+            preparedStatement.setString(1, item.getName());
             String str = preparedStatement.execute() ? "Item is not added." : "Item is added.";
             System.out.println(str);
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getInt(1));
+                    return item;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //throw new IllegalStateException("Could not create new user");
         return item;
     }
 
