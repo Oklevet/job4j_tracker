@@ -1,5 +1,6 @@
 package ru.job4j.tracker_ver_2;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class SqlTracker implements Store {
 
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+        //try (FileInputStream in = new FileInputStream("src/main/resources/app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -41,7 +43,7 @@ public class SqlTracker implements Store {
     public Item add(Item item) {
 
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "insert into items(id, name) values (?, ?) ", Statement.RETURN_GENERATED_KEYS)){
+                "insert into items(id, name) values (?) ", Statement.RETURN_GENERATED_KEYS)){
             preparedStatement.setString(1, item.getName());
             String str = preparedStatement.execute() ? "Item is not added." : "Item is added.";
             System.out.println(str);
