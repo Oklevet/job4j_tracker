@@ -1,4 +1,4 @@
-package ru.job4j.tracker_ver_2;
+package ru.job4j.tracker2;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ public class StartUI {
 
     public StartUI(Output out) {
         this.out = out;
-        this.actions = List.of(new CreateAction(out), new ShowAllItems(out)
-                ,new ReplaceItem(out), new DeleteItem(out), new FindItemById(out)
-                ,new FindItemByName(out), new ExitProgram()
+        this.actions = List.of(new CreateAction(out), new ShowAllItems(out),
+                new ReplaceItem(out), new DeleteItem(out), new FindItemById(out),
+                new FindItemByName(out), new ExitProgram()
         );
         try {
             sqlTrack = new SqlTracker();

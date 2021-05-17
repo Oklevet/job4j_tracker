@@ -1,4 +1,4 @@
-package ru.job4j.tracker_ver_2;
+package ru.job4j.tracker2;
 
 
 import java.lang.reflect.Proxy;
@@ -21,7 +21,9 @@ public class ConnectionRollback {
         connection.setAutoCommit(false);
         return (Connection) Proxy.newProxyInstance(
                 ConnectionRollback.class.getClassLoader(),
-                new Class[] { Connection.class },
+                new Class[] {
+                        Connection.class
+                },
                 (proxy, method, args) -> {
                     Object rsl = null;
                     if ("close".equals(method.getName())) {

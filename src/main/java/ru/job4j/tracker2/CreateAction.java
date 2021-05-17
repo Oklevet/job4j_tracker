@@ -1,4 +1,4 @@
-package ru.job4j.tracker_ver_2;
+package ru.job4j.tracker2;
 
 public class CreateAction implements UserAction {
     private final Output out;

@@ -1,6 +1,5 @@
-package ru.job4j.tracker_ver_2;
+package ru.job4j.tracker2;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +9,8 @@ import java.util.Properties;
 public class SqlTracker implements Store {
     private Connection cn;
 
-    public SqlTracker() {}
+    public SqlTracker() {
+    }
 
     public SqlTracker(Connection cn) {
         this.cn = cn;
@@ -43,7 +43,7 @@ public class SqlTracker implements Store {
     public Item add(Item item) {
 
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "insert into items(id, name) values (?) ", Statement.RETURN_GENERATED_KEYS)){
+                "insert into item.items(name) values (?) ", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, item.getName());
             String str = preparedStatement.execute() ? "Item is not added." : "Item is added.";
             System.out.println(str);
@@ -60,24 +60,11 @@ public class SqlTracker implements Store {
         return item;
     }
 
-    public Integer getID() {
-        int res = 0;
-        try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "select max(id) from items ")) {
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    res = resultSet.getInt("id");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-
     @Override
     public boolean replace(int id, Item item) {
         boolean result = false;
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "update items set name = (?) where items.id = ?")) {
+                "update item.items set name = (?) where item.items.id = ?")) {
             preparedStatement.setString(1, item.getName());
             preparedStatement.setInt(2, id);
             result = preparedStatement.executeUpdate() > 0;
@@ -91,7 +78,7 @@ public class SqlTracker implements Store {
     public boolean delete(int id) {
         boolean result = false;
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "delete from items where id = ?")) {
+                "delete from item.items where item.items.id = ?")) {
             preparedStatement.setInt(1, id);
             result = preparedStatement.executeUpdate() > 0;
         } catch (Exception e) {
@@ -104,7 +91,7 @@ public class SqlTracker implements Store {
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "select * from items")) {
+                "select * from item.items")) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     items.add(new Item(
@@ -123,7 +110,7 @@ public class SqlTracker implements Store {
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "select * from items where items.name = ?")) {
+                "select * from item.items where items.name = ?")) {
             preparedStatement.setString(1, key);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -143,7 +130,7 @@ public class SqlTracker implements Store {
     public Item findById(int id) {
         Item item = null;
         try (PreparedStatement preparedStatement = cn.prepareStatement(
-                "select * from items where items.id = ?")) {
+                "select * from item.items where items.id = ?")) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
