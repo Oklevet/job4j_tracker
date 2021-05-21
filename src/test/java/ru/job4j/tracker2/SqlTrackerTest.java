@@ -1,6 +1,7 @@
 package ru.job4j.tracker2;
 
 import org.junit.Test;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -64,8 +65,9 @@ public class SqlTrackerTest {
     @Test
     public void deleteItem() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
-            assertThat(tracker.delete(0), is(true));
+            Item item1 = new Item("name");
+            tracker.add(item1);
+            assertThat(tracker.delete(item1.getId()), is(true));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,7 +77,7 @@ public class SqlTrackerTest {
     public void deleteItemInvalid() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
             tracker.add(new Item("name"));
-            assertThat(tracker.delete(2), is(false));
+            assertThat(tracker.delete(1111), is(false));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,8 +86,9 @@ public class SqlTrackerTest {
     @Test
     public void replaceItem() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
-            assertThat(tracker.replace(1, new Item("qwe")), is(true));
+            Item item1 = new Item("name");
+            tracker.add(item1);
+            assertThat(tracker.replace(item1.getId(), new Item("qwe")), is(true));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,8 +97,9 @@ public class SqlTrackerTest {
     @Test
     public void replaceItemInvaid() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
-            assertThat(tracker.replace(2, new Item("qwe")), is(false));
+            Item item1 = new Item("name");
+            tracker.add(item1);
+            assertThat(tracker.replace(item1.getId(), new Item("qwe")), is(false));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,12 +118,15 @@ public class SqlTrackerTest {
     @Test
      public void findByIdItem() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
-            tracker.add(new Item("asd"));
+            Item item1 = new Item("name");
+            Item item2 = new Item("asd");
+            tracker.add(item1);
+            tracker.add(item2);
+            System.out.println(item1);
+            System.out.println(tracker.findById(0));
             System.out.println(tracker.findByName("name"));
-            System.out.println(tracker.findByName("asd"));
-            System.out.println(tracker.findById(0).getName());
-            assertThat(tracker.findById(0).getName(), is("name"));
+            System.out.println(tracker.findAll().toString());
+            assertThat(tracker.findById(item1.getId()).getName(), is("name"));
         } catch (Exception e) {
             e.printStackTrace();
         }

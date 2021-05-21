@@ -41,12 +41,9 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-
         try (PreparedStatement preparedStatement = cn.prepareStatement(
                 "insert into item.items(name) values (?) ", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, item.getName());
-            String str = preparedStatement.execute() ? "Item is not added." : "Item is added.";
-            System.out.println(str);
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     item.setId(generatedKeys.getInt(1));
