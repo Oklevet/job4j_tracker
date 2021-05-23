@@ -99,7 +99,7 @@ public class SqlTrackerTest {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
             Item item1 = new Item("name");
             tracker.add(item1);
-            assertThat(tracker.replace(item1.getId(), new Item("qwe")), is(false));
+            assertThat(tracker.replace(999, new Item("qwe")), is(false));
         } catch (Exception e) {
             e.printStackTrace();
         }

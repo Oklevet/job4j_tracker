@@ -44,6 +44,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement preparedStatement = cn.prepareStatement(
                 "insert into item.items(name) values (?) ", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, item.getName());
+            preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     item.setId(generatedKeys.getInt(1));
@@ -53,7 +54,6 @@ public class SqlTracker implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //throw new IllegalStateException("Could not create new user");
         return item;
     }
 
