@@ -1,6 +1,6 @@
 package ru.job4j.trackerold;
 
-public class Item {
+public class Item extends ru.job4j.tracker.Item {
     private int id;
     private String name;
 
