@@ -24,7 +24,7 @@ public class StartUI {
                 ru.job4j.tracker.Item[] items = tracker.findAll().toArray(new ru.job4j.tracker.Item[0]);
                 if (items.length > 0) {
                     for (ru.job4j.tracker.Item item : items) {
-                        System.out.println(item.toString());
+                        System.out.println(item);
                     }
                 } else {
                     System.out.println("Хранилище еще не содержит заявок.");
