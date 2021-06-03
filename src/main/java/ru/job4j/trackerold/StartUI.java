@@ -1,20 +1,8 @@
 package ru.job4j.trackerold;
 
-import ru.job4j.tracker.ConsoleInput;
-import ru.job4j.tracker.ConsoleOutput;
-import ru.job4j.tracker.CreateAction;
-import ru.job4j.tracker.DeleteItem;
-import ru.job4j.tracker.ExitProgram;
-import ru.job4j.tracker.FindItemById;
-import ru.job4j.tracker.FindItemByName;
-import ru.job4j.tracker.Input;
-import ru.job4j.tracker.Output;
-import ru.job4j.tracker.ReplaceItem;
-import ru.job4j.tracker.ShowAllItems;
 import ru.job4j.tracker.Tracker;
-import ru.job4j.tracker.UserAction;
-import ru.job4j.tracker.ValidateInput;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class StartUI {
@@ -71,6 +59,18 @@ public class StartUI {
                     System.out.println(item);
                 } else {
                     System.out.println("Заявка с введенным id: " + id + " не найдена.");
+                }
+            } else if (select == 5) {
+                System.out.println("=== Find items by name ====");
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+                List<ru.job4j.tracker.Item> items = tracker.findByName(name);
+                if (items.size() > 0) {
+                    for (ru.job4j.tracker.Item item : items) {
+                        System.out.println(item);
+                    }
+                } else {
+                    System.out.println("Заявки с именем: " + name + " не найдены.");
                 }
             } else if (select == 6) {
                 run = false;
