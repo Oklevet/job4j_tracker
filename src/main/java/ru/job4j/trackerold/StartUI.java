@@ -33,9 +33,9 @@ public class StartUI {
                 System.out.println("Добавленная заявка: " + item);
             } else if (select == 1) {
                 System.out.println("=== Show all items ====");
-                Item[] items = tracker.findAll().toArray(new Item[0]);
+                ru.job4j.tracker.Item[] items = tracker.findAll().toArray(new ru.job4j.tracker.Item[0]);
                 if (items.length > 0) {
-                    for (Item item : items) {
+                    for (ru.job4j.tracker.Item item : items) {
                         System.out.println(item.toString());
                     }
                 } else {
