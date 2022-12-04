@@ -1,8 +1,10 @@
 create schema if not exists item;
 create table if not exists item.items (
    id serial primary key,
-   "name" varchar(2000)
+   "name" text,
+   created timestamp
 );
+commit;
 
---drop table items;
---select * from items;
+--drop table item.items;
+--select * from item.items;
