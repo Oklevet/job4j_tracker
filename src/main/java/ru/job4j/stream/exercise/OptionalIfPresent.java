@@ -9,9 +9,13 @@ public class OptionalIfPresent {
         if (mx.isPresent()) {
             System.out.println("Max: " + mx.getAsInt());
         }
-//        max(data).stream()
-//                .findFirst()
-//                .isPresent(x -> System.out.println("Max: " + x.getAsInt()));
+        /**
+         * alternative
+         * max(data).stream()
+         *                 .findFirst()
+         *                 .isPresent(x -> System.out.println("Max: " + x.getAsInt()));
+         */
+
     }
 
     private static OptionalInt max(int[] data) {

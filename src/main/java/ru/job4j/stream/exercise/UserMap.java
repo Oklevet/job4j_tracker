@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
  */
 public class UserMap {
     public static class User {
-
         private int age;
 
         public User(int age) {
