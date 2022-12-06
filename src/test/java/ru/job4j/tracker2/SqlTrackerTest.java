@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class SqlTrackerTest {
-
+    /*
     public Connection init() throws ClassNotFoundException, SQLException {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -130,5 +130,5 @@ public class SqlTrackerTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
