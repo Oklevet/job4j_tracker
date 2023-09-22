@@ -16,7 +16,13 @@ public class SqlTrackerTest {
     /*
 
     <include file="scripts/002_ddl_alter_table_items_add_checked_column.sql" relativeToChangelogFile="true"/>
+    ALTER TABLE item.items ADD COLUMN checked BOOLEAN NOT NULL DEFAULT false;
+commit;
+
     <include file="scripts/003_ddl_alter_table_items_drop_checked_column.sql" relativeToChangelogFile="true"/>
+    alter table item.items drop COLUMN checked;
+commit;
+
     public Connection init() throws ClassNotFoundException, SQLException {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
