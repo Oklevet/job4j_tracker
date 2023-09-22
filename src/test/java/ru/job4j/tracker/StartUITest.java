@@ -1,14 +1,122 @@
 package ru.job4j.tracker;
 
-import junit.framework.TestCase;
-import org.hamcrest.Matcher;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class StartUITest {
+
+    @Test
+    public void executeAdd() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("Replaced item"));
+        String replacedName = "New item name";
+        ReplaceItem rep = new ReplaceItem(out);
+
+        Input input = mock(Input.class);
+
+        when(input.askInt(any(String.class))).thenReturn(1);
+        when(input.askStr(any(String.class))).thenReturn(replacedName);
+
+        rep.execute(input, tracker);
+
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo("==== Edit item ====" + ln + "Edit item is done." + ln);
+        assertThat(tracker.findAll().get(0).getName()).isEqualTo(replacedName);
+    }
+
+    @Test
+    public void executeFindById() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = new Item("New item");
+        tracker.add(item);
+        FindItemById find = new FindItemById(out);
+
+        Input input = mock(Input.class);
+
+        when(input.askInt(any(String.class))).thenReturn(1);
+
+        find.execute(input, tracker);
+
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo("==== Find item by Id ====" + ln + item + ln);
+        assertThat(tracker.findById(1)).isEqualTo(item);
+    }
+
+    @Test
+    public void executeFindByName() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = new Item("New item");
+        tracker.add(item);
+        List<Item> expectedList = new ArrayList<>();
+        expectedList.add(item);
+        FindItemByName find = new FindItemByName(out);
+
+        Input input = mock(Input.class);
+
+        when(input.askStr(any(String.class))).thenReturn("New item");
+
+        find.execute(input, tracker);
+
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo("==== Find items by name ====" + ln + item + ln);
+        assertThat(tracker.findByName("New item")).isEqualTo(expectedList);
+    }
+
+    @Test
+    public void executeFindByNameFewItems() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item1 = new Item("item");
+        Item item2 = new Item("item");
+        tracker.add(item1);
+        tracker.add(item2);
+        List<Item> expectedList = new ArrayList<>();
+        expectedList.add(item1);
+        expectedList.add(item2);
+        FindItemByName find = new FindItemByName(out);
+
+        Input input = mock(Input.class);
+
+        when(input.askStr(any(String.class))).thenReturn("item");
+
+        find.execute(input, tracker);
+
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo("==== Find items by name ====" + ln + item1 + ln + item2 + ln);
+        assertThat(tracker.findByName("item")).isEqualTo(expectedList);
+    }
+
+    @Test
+    public void executeDelete() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("New item"));
+        DeleteItem del = new DeleteItem(out);
+
+        Input input = mock(Input.class);
+
+        when(input.askInt(any(String.class))).thenReturn(1);
+
+        del.execute(input, tracker);
+
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo("==== Delete item ====" + ln + "Удаление заявки произведено." + ln);
+        assertThat(tracker.findAll().size()).isLessThan(1);
+    }
 
     @Test
     public void whenExit() {
