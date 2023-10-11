@@ -23,6 +23,10 @@ commit;
     alter table item.items drop COLUMN checked;
 commit;
 
+from dbchangelog.xml
+    <include file="scripts/002_ddl_alter_table_items_add_checked_column.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/003_ddl_alter_table_items_drop_checked_column.sql" relativeToChangelogFile="true"/>
+
     public Connection init() throws ClassNotFoundException, SQLException {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
