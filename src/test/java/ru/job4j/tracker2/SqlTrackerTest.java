@@ -1,9 +1,6 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker2;
 
 import org.junit.Test;
-import ru.job4j.sort.tracker2.ConnectionRollback;
-import ru.job4j.sort.tracker2.Item;
-import ru.job4j.sort.tracker2.SqlTracker;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -12,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class SqlTrackerTest {
     public Connection init() throws ClassNotFoundException, SQLException {
