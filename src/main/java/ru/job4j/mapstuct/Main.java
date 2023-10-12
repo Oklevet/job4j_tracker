@@ -11,8 +11,8 @@ import ru.job4j.mapstuct.model.StudentEntity;
 public class Main {
     public static void main(String[] args) {
         StudentMapper studentMapper = Mappers.getMapper(StudentMapper.class);
-        StudentEntity sEntity = new StudentEntity(0,"entity", "junior");
-        StudentDto sDto = new StudentDto(11,"dto", "middle");
+        StudentEntity sEntity = new StudentEntity(0, "entity", "junior");
+        StudentDto sDto = new StudentDto(11, "dto", "middle");
         StudentDto fromEntity = studentMapper.getModelFromEntity(sEntity);
         System.out.println("fromEntity = " + fromEntity);
         StudentEntity fromDto = studentMapper.detEntityFromDto(sDto);
@@ -22,8 +22,8 @@ public class Main {
 
 
         DeliveryAddressMapper deliveryAddressMapper = Mappers.getMapper(DeliveryAddressMapper.class);
-        sEntity = new StudentEntity(0,"entity", "junior");
-        sDto = new StudentDto(11,"dto", "middle");
+        sEntity = new StudentEntity(0, "entity", "junior");
+        sDto = new StudentDto(11, "dto", "middle");
         AddressEntity address = new AddressEntity(100, "cityGood", "stateNew");
         DeliveryAddressDTO deliveryAddressDTO = deliveryAddressMapper.getDeliveryAddress(sEntity, address);
         System.out.println("deliveryAddressDTO = " + deliveryAddressDTO);
