@@ -15,8 +15,8 @@ public class HQLUsage {
                 .buildMetadata().buildSessionFactory()) {
             Session session = sf.openSession();
 
-            Query query = session.createQuery("INSERT INTO Item(name)" +
-                    "SELECT name FROM Другая_таблица");
+            Query query = session.createQuery("INSERT INTO Item(name)"
+                    + "SELECT name FROM Другая_таблица");
             int rsl = query.executeUpdate();
 
             Item item = new Item("nameSave");

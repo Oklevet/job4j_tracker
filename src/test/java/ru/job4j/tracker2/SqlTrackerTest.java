@@ -40,8 +40,8 @@ public class SqlTrackerTest {
     @Test
     public void findAllAfterAdd() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
-            tracker.add(new Item("qwe"));
+            tracker.add(new ru.job4j.tracker2.Item("name"));
+            tracker.add(new ru.job4j.tracker2.Item("qwe"));
             tracker.findAll();
             assertThat(tracker.findByName("name").size(), is(1));
             assertThat(tracker.findByName("qwe").size(), is(1));
@@ -53,7 +53,7 @@ public class SqlTrackerTest {
     @Test
     public void createItem() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
+            tracker.add(new ru.job4j.tracker2.Item("name"));
             assertThat(tracker.findByName("name").size(), is(1));
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class SqlTrackerTest {
     @Test
     public void deleteItem() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            Item item1 = new Item("name");
+            ru.job4j.tracker2.Item item1 = new ru.job4j.tracker2.Item("name");
             tracker.add(item1);
             assertThat(tracker.delete(item1.getId()), is(true));
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class SqlTrackerTest {
     @Test
     public void deleteItemInvalid() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
+            tracker.add(new ru.job4j.tracker2.Item("name"));
             assertThat(tracker.delete(1111), is(false));
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,9 +84,9 @@ public class SqlTrackerTest {
     @Test
     public void replaceItem() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            Item item1 = new Item("name");
+            ru.job4j.tracker2.Item item1 = new ru.job4j.tracker2.Item("name");
             tracker.add(item1);
-            assertThat(tracker.replace(item1.getId(), new Item("qwe")), is(true));
+            assertThat(tracker.replace(item1.getId(), new ru.job4j.tracker2.Item("qwe")), is(true));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,9 +95,9 @@ public class SqlTrackerTest {
     @Test
     public void replaceItemInvaid() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            Item item1 = new Item("name");
+            ru.job4j.tracker2.Item item1 = new ru.job4j.tracker2.Item("name");
             tracker.add(item1);
-            assertThat(tracker.replace(999, new Item("qwe")), is(false));
+            assertThat(tracker.replace(999, new ru.job4j.tracker2.Item("qwe")), is(false));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,7 +106,7 @@ public class SqlTrackerTest {
     @Test
     public void findByNameItem() throws SQLException {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name"));
+            tracker.add(new ru.job4j.tracker2.Item("name"));
             assertThat(tracker.findByName("name").size(), is(1));
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,8 +121,8 @@ public class SqlTrackerTest {
             tracker.add(item1);
             tracker.add(item2);
             System.out.println(item1);
-            System.out.println(tracker.findById(0));
-            System.out.println(tracker.findByName("name"));
+            System.out.println(item1.getId());
+            System.out.println(item1.getName());
             System.out.println(tracker.findAll().toString());
             assertThat(tracker.findById(item1.getId()).getName(), is("name"));
         } catch (Exception e) {
