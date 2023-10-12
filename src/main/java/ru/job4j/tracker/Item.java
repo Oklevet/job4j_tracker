@@ -1,14 +1,25 @@
 package ru.job4j.tracker;
 
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-import lombok.*;
+import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "items")
 @Data
-@AllArgsConstructor
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class Item {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @NonNull
     private String name;
+    private LocalDateTime created = LocalDateTime.now();
 }
