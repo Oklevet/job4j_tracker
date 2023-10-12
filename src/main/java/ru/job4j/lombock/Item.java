@@ -4,6 +4,7 @@ import lombok.*;
 
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@RequiredArgsConstructor
 public class Item {
     @Getter
     @Setter
