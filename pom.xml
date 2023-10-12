@@ -19,7 +19,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <liquibase.config>db/liquibase_test.properties</liquibase.config>
+                <liquibase.config>/src/db/liquibase_test.properties</liquibase.config>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -28,7 +28,7 @@
         <profile>
             <id>production</id>
             <properties>
-                <liquibase.config>db/liquibase.properties</liquibase.config>
+                <liquibase.config>/src/db/liquibase.properties</liquibase.config>
             </properties>
         </profile>
     </profiles>
@@ -136,7 +136,7 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.2.0</version>
+                <version>4.22.0</version>
                 <configuration>
                     <propertyFile>${liquibase.config}</propertyFile>
                 </configuration>
