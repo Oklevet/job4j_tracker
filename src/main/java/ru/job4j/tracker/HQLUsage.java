@@ -29,7 +29,7 @@ public class HQLUsage {
 
             System.out.println();
 
-            Query<Item> query2 = session.createQuery("from ru.job4j.tracker.Item as i where i.id = 3", Item.class);
+            Query<Item> query2 = session.createQuery("from Item as i where i.id = 3", Item.class);
             for (Object st : query2.list()) {
                 System.out.println(st);
             }
