@@ -4,6 +4,4 @@ create table if not exists items (
    created timestamp
 );
 
-truncate items;
-
 commit;
