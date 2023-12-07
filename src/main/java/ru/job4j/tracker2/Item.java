@@ -1,8 +1,8 @@
 package ru.job4j.tracker2;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
