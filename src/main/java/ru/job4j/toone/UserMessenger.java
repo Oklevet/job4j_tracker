@@ -1,12 +1,8 @@
 package ru.job4j.toone;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+import lombok.*;
+import lombok.EqualsAndHashCode.Include;
 
 @Data
 @AllArgsConstructor
