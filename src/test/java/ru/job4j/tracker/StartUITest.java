@@ -156,7 +156,6 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("qwe1"));
         item.setCreated(null);
-        Item[] items = new Item[] {item};
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -170,7 +169,7 @@ public class StartUITest {
                         + "0. Show all items." + System.lineSeparator()
                         + "1. Exit." + System.lineSeparator()
                         + "==== Show all items ====" + System.lineSeparator()
-                        + "Item(id=1, name=qwe1, created=null)" + System.lineSeparator()
+                        + "Item(id=1, name=qwe1, created=null, participates=[])" + System.lineSeparator()
                         + "Menu." + System.lineSeparator()
                         + "0. Show all items." + System.lineSeparator()
                         + "1. Exit." + System.lineSeparator()
@@ -183,7 +182,6 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("qwe1"));
         item.setCreated(null);
-        String findName = "qwe1";
         Input in = new StubInput(
                 new String[] {"0", "qwe1", "1"}
         );
@@ -197,7 +195,7 @@ public class StartUITest {
                         + "0. Find items by name." + System.lineSeparator()
                         + "1. Exit." + System.lineSeparator()
                         + "==== Find items by name ====" + System.lineSeparator()
-                        + "Item(id=1, name=qwe1, created=null)" + System.lineSeparator()
+                        + "Item(id=1, name=qwe1, created=null, participates=[])" + System.lineSeparator()
                         + "Menu." + System.lineSeparator()
                         + "0. Find items by name." + System.lineSeparator()
                         + "1. Exit." + System.lineSeparator()
@@ -223,7 +221,7 @@ public class StartUITest {
                         + "0. Find item by Id." + System.lineSeparator()
                         + "1. Exit." + System.lineSeparator()
                         + "==== Find item by Id ====" + System.lineSeparator()
-                        + "Item(id=1, name=qwe1, created=null)" + System.lineSeparator()
+                        + "Item(id=1, name=qwe1, created=null, participates=[])" + System.lineSeparator()
                         + "Menu." + System.lineSeparator()
                         + "0. Find item by Id." + System.lineSeparator()
                         + "1. Exit." + System.lineSeparator()
